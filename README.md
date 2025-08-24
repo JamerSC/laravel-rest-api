@@ -1,18 +1,22 @@
-## Learning Laravel API | August 23, 2025
+### Learning Laravel API | August 23, 2025
 
 ### Youtube tutorial by Envato Tuts+ https://www.youtube.com/watch?v=YGqCZjdgJJk
 
-## Documentation provided by default on creating new Laravel Project
+### Documentation provided by default on creating new Laravel Project
 
-## Setup
+### Setup
 
-1. Create new Project
+### Chapter 1: Introduction to LARAVEL
+
+### Chapter 2: Getting Started
+
+1. CREATING THE PROJECT
 
 -   laravel project ex. laravel-api
 -   Create Github repo then initialize the repo in the project folder
 -   Find the .env file and check the database name & create the database in the mysql/xampp db
 
-2. Designing & Seeding the Database
+2. DESIGNING AND SEEDING THE DATABASE
 
 -   Create a Model Customer & Invoice (php artisan make:model Invoice --all)
 -   Added data types of Customer & Invoice
@@ -22,15 +26,20 @@
 -   After setting up the Customer & Invoice Model, Added Data types, Factory, Seeder. Next migrate the date (php artisan migrate:fresh --seed)
 -   Note: Check the database
 
-3. Versioning & Defining Routes
+### Chapter 3: Providing Data
+
+3. VERSIONING AND DEFINING ROUTES
 
 -   App > Http > Controllers > Api > Version & Routes > api
 -   Run the server then test the api url: http://127.0.0.1:8000/api/v1/customers
--   Transforming database data into Json: php artisan make:resource V1\CustomerResource (Resource transform Eloquent Model into Json)
 
-## August 24, 2025
+4. TRANSFORMING DATABASE DATA INTO JSON
 
-4. Fitlering Data (Part 1)
+-   Php artisan make:resource V1\CustomerResource (Resource transform Eloquent Model into Json)
+
+### August 24, 2025
+
+5. FILTERING DATA
 
 -   added Services Folder > create new class CustomerQuery
 -   added logic to Controller > Index function
@@ -39,7 +48,7 @@
 -   http://127.0.0.1:8000/api/v1/customers?postalCode[gt]=90000
 -   http://127.0.0.1:8000/api/v1/customers?postalCode[gt]=90000&type[eq]=B
 
-5. Fitlering More Data (Part 2)
+6. FILTERING MORE DATA
 
 -   Change/Rename forder Services to Filter Folders, CustomersQuery to CustomersFilter
 -   Added ApiFilter Class
@@ -48,4 +57,11 @@
 -   Removed the method of Customers & Invoices Filter Class
 -   Update the controller logic to maintain the link filter query
 
-6. Including Related Data
+7. INCLUDING RELATED DATA
+
+-   Updated the Customer controller chage the index method login and added a variable inlude invoices
+-   Updated the App > Http> Controller > Resources > CustomerResource Class then added a new field for Invoice
+
+### Chapter 4: Manipulating Data
+
+8. CREATING RESOURCES WITH POST REQUESTS

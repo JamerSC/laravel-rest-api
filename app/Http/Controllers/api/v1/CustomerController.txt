@@ -24,21 +24,22 @@ class CustomerController extends Controller
         $filter = new CustomersFilter();
 
         // past the request object in the service > customer query function
-        $filterItems = $filter->filterRequest($request); // [['column', 'operator', 'value']]
+        $queryItems = $filter->filterRequest($request); // [['column', 'operator', 'value']]
 
-        // include invoices
-        $includeInvoices = $request->query('includeInvoices');
+        // check if empty
+        if (count($queryItems) == 0) {
+            // get all customers
+            return new CustomerCollection(Customer::paginate());
+        } else {
+            // get all fitered items
+            $customers = Customer::where($queryItems)->paginate();
 
-        // get all fitered items
-        $customers = Customer::where($filterItems);
-        
-        if ($includeInvoices) {
-            // include the customers invoices
-            $customers = $customers->with('invoices');
+            return new CustomerCollection($customers->appends($request->query()));
         }
 
-        // return customer collection with paginate
-        return new CustomerCollection($customers->paginate()->appends($request->query()));
+        // return Customer::all(); // get all customer
+        //return new CustomerCollection(Customer::all()); // get all customer using resource
+        //return new CustomerCollection(Customer::paginate()); // display customer using pagination
     }
 
     /**
@@ -62,11 +63,6 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        $includeInvoices = request()->query('includeInvoices');
-
-        if( $includeInvoices ) {
-            return new CustomerResource($customer->loadMissing('invoices'));
-        }
         //return $customer;
         return new CustomerResource($customer);
     }
