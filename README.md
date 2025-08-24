@@ -70,4 +70,12 @@
 -   Use the existing or StoreCustomerRequest or type - 'php artisan make:request V1\StoreCustomerRequest'
 -   StoreCustomerRequest - make the authorize method true, add rules, & create a prepareForValidation() method for camelCase jason to merge to database column
 -   Add fillable in Customer Model
--
+-   Test post request in the postman
+-   Update the header.. unchecked the application, then create Application & select the Application/Json
+
+9. UPDATING WITH PUT & PATCH
+
+-   Use the existing or UpdateCustomerRequest or type - 'php artisan make:request V1\UpdateCustomerRequest'
+-   Update the UpdateCustomerRequest function logic for PUT & PATCH Method, update Customer controller -> update() method.
+-   Test put & patch request in the postman
+-   Update the header.. unchecked the application, then create Application & select the Application/Json
