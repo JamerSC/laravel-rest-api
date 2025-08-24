@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateCustomerRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
-use App\Services\V1\CustomerQuery; // Services
+use App\Filters\V1\CustomersFilter; // Filters
 
 class CustomerController extends Controller
 {
@@ -20,9 +20,9 @@ class CustomerController extends Controller
     // filtering add the request parameter $request
     public function index(Request $request)
     {
-        // create new object
-        $filter = new CustomerQuery();
-        
+        // create new CustomerFilterobject
+        $filter = new CustomersFilter();
+
         // past the request object in the service > customer query function
         $queryItems = $filter->filterRequest($request); // [['column', 'operator', 'value']]
 
@@ -32,7 +32,9 @@ class CustomerController extends Controller
             return new CustomerCollection(Customer::paginate());
         } else {
             // get all fitered items
-            return new CustomerCollection(Customer::where($queryItems)->paginate());
+            $customers = Customer::where($queryItems)->paginate();
+
+            return new CustomerCollection($customers->appends($request->query()));
         }
 
         // return Customer::all(); // get all customer
