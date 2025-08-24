@@ -65,3 +65,9 @@
 ### Chapter 4: Manipulating Data
 
 8. CREATING RESOURCES WITH POST REQUESTS
+
+-   In controller create() & edit() method will not be use in API (usually it is use on web application)
+-   Use the existing or StoreCustomerRequest or type - 'php artisan make:request V1\StoreCustomerRequest'
+-   StoreCustomerRequest - make the authorize method true, add rules, & create a prepareForValidation() method for camelCase jason to merge to database column
+-   Add fillable in Customer Model
+-
