@@ -22,4 +22,14 @@
 -   Versioning & Defining Routes: App > Http > Controllers > Api > Version & Routes > api
 -   Run the server then test the api url: http://127.0.0.1:8000/api/v1/customers
 -   Transforming database data into Json: php artisan make:resource V1\CustomerResource (Resource transform Eloquent Model into Json)
--
+
+## August 24, 2025
+
+-   Fitlering Data:
+
+*   added Services Folder > create new class CustomerQuery
+*   added logic to Controller > Index function
+*   added logic to Service > Customer Query > add variables for mapping & filterRequest() method
+*   example of API query parameter
+*   http://127.0.0.1:8000/api/v1/customers?postalCode[gt]=90000
+*   http://127.0.0.1:8000/api/v1/customers?postalCode[gt]=90000&type[eq]=B
