@@ -66,16 +66,32 @@
 
 8. CREATING RESOURCES WITH POST REQUESTS
 
--   In controller create() & edit() method will not be use in API (usually it is use on web application)
--   Use the existing or StoreCustomerRequest or type - 'php artisan make:request V1\StoreCustomerRequest'
+-   Use POSTMAN for testing API POST request
+-   Customer controller create() & edit() fxn will not be use in API (usually it is use on web application)
+-   Customer model add $fillable
+-   Use artisan: php artisan make:request V1\StoreCustomerRequest (V1 - is use for folder version)
+-   Or se the existing StoreCustomerRequest in App\Http\Request
 -   StoreCustomerRequest - make the authorize method true, add rules, & create a prepareForValidation() method for camelCase jason to merge to database column
--   Add fillable in Customer Model
--   Test post request in the postman
--   Update the header.. unchecked the application, then create Application & select the Application/Json
+-   In POSTMAN update the header.. disable existing application, then create new application & select the Application/Json
 
 9. UPDATING WITH PUT & PATCH
 
--   Use the existing or UpdateCustomerRequest or type - 'php artisan make:request V1\UpdateCustomerRequest'
+-   Use POSTMAN for testing API PUT & PATCH request
+-   Use php artisan: php artisan make:request V1\UpdateCustomerRequest (V1 - is use for folder version)
+-   Or use the existing UpdateCustomerRequest in App\Http\Request
 -   Update the UpdateCustomerRequest function logic for PUT & PATCH Method, update Customer controller -> update() method.
 -   Test put & patch request in the postman
--   Update the header.. unchecked the application, then create Application & select the Application/Json
+-   Update the header.. disable the application, then create Application & select the Application/Json
+
+10. IMPLEMENTING BULK INSERT
+
+-   Add new function in InvoiceController > bulkStore() fxn
+-   In Routes create new endpoint to specify where to route the request - InvoiceController@bulkStore
+-   Create new BulkStoreInvoiceRequest class
+-   Set the rule in BulkStoreInvoiceRequest class & add validation
+-   Invoice Controller set the bulkStore function
+-   Test the bulk import
+
+### Chapter 5: Authentication
+
+11. PROTECTING ROUTES WITH SANCTUM

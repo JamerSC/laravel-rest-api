@@ -22,9 +22,10 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        // check the http request
+        // get the http method request
         $method = $this->method();
 
+        // check if equeals to PUT method
         if($method == 'PUT') 
         {
             return [
@@ -54,6 +55,7 @@ class UpdateCustomerRequest extends FormRequest
 
     // merge other values
     function prepareForValidation() {
+        // if we have postal code it will merge
         if ($this->postalCode) {
             $this->merge([
                 'postal_code' => $this->postalCode

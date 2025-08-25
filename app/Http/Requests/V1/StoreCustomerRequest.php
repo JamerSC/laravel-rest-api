@@ -3,7 +3,7 @@
 namespace App\Http\Requests\V1;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rule; // import rule  
 
 class StoreCustomerRequest extends FormRequest
 {
@@ -33,7 +33,7 @@ class StoreCustomerRequest extends FormRequest
         ];
     }
 
-    // merge other values
+    // merge the other values
     function prepareForValidation() {
         $this->merge([
             'postal_code' => $this->postalCode

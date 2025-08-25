@@ -17,6 +17,7 @@ class CustomerController extends Controller
      * Display a listing of the resource.
      */
 
+    // GET ALL CUSTOMER
     // filtering add the request parameter $request
     public function index(Request $request)
     {
@@ -50,6 +51,7 @@ class CustomerController extends Controller
         // mostly used in web application
     }
 
+    // CREATE CUSTOMER
     /**
      * Store a newly created resource in storage.
      */
@@ -65,13 +67,18 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
+        // URL request query
         $includeInvoices = request()->query('includeInvoices');
 
+        // check the include invoices request query
         if( $includeInvoices ) {
+            // return customer w/invoices
             return new CustomerResource($customer->loadMissing('invoices'));
         }
-        //return $customer;
+        // return customer only
         return new CustomerResource($customer);
+
+        //return $customer;
     }
 
     /**
